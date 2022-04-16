@@ -1,6 +1,6 @@
-# Documentation for project_name {#mainpage}
+# Documentation for RNA Secondary Structure Prediction {#mainpage}
 
-This is the documentation for project_name.
+This is the documentation for RNA Secondary Structure Prediction.
 
 It is good documentation because:
 
