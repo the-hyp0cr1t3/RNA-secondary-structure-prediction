@@ -1,5 +1,5 @@
 # RNA secondary structure prediction
-**Problem:** Given a nucleic acid sequence of RNA, find a [maximum matching](https://en.wikipedia.org/wiki/Matching_(graph_theory)) of $\{A,U\}$ or $\{C,G\}$ base pairs without knots or sharp turns.
+**Problem:** Given a nucleic acid sequence of RNA, find a [maximum matching](https://en.wikipedia.org/wiki/Matching_(graph_theory)) of $\{A,U\}$ or $\{C,G\} $ base pairs without knots or sharp turns.
 
 This is a modern C++ implementation that employs (iterative) [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming) on intervals to find the cardinality of the maximum matching of base pairs.
 
