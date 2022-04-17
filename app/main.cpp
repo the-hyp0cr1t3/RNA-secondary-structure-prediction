@@ -40,14 +40,14 @@ int main(int argc, char *argv[]) {
 
 
     // writing output
-    std::cout << num_matchings << " matching(s) possible" << std::endl;
+    std::cout << std::endl << "  " << num_matchings << std::endl;
 
 #ifdef RECOVER_MATCHING
     for(auto [l, r]: matchings)
-        std::cout << l + 1 << ' ' << r + 1 << std::endl;
+        std::cout << "  " << l + 1 << ' ' << r + 1 << std::endl;
 #endif
 
     // time taken
-    std::cout << std::endl << "Total runtime: "
-              << std::chrono::duration<double, std::milli>(total_runtime).count() << std::endl;
+    std::cout << std::endl << "  Took "
+              << std::chrono::duration<double, std::milli>(total_runtime).count() << " ms" << std::endl;
 }

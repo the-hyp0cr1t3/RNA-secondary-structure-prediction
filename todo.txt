@@ -14,8 +14,3 @@
 ```
     - chmod +x pre-commit
     - use `git commit --no-verify` to circumvent
-
-
-References:
-- https://cliutils.gitlab.io/modern-cmake/chapters/basics/structure.html
-- https://gitlab.com/CLIUtils/modern-cmake/-/tree/master/examples/extended-project
