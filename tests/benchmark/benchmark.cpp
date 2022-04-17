@@ -24,8 +24,10 @@ static void BM_Random(benchmark::State& state) {
     state.SetComplexityN(n);
 }
 
+#define NUM_VALUES 5
+
 BENCHMARK(BM_Random)
-    ->DenseRange(MIN_LEN, 500, 500 / 50)
+    ->DenseRange(MIN_LEN, 500, 500 / NUM_VALUES)
     ->Complexity(benchmark::oNCubed);
 
 BENCHMARK_MAIN();
