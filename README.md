@@ -46,7 +46,7 @@ Output will be in `docs/html`.
 ### Input Format
 Input must contain the description of a nucleic acid sequence of RNA in the following format.
 
-The first and only line must contain a string $s$ $(s_i \in \{A,C,G,U\} \, \forall \, 1 \le i \le |s|)$ — the nucleic acid sequence.
+The first and only line must contain a string $s$ $(s_i \in \{A,C,G,U\})$ — the nucleic acid sequence.
 
 ### Output Format
 The output will contain the description of the maximum matching.
