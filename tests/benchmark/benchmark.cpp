@@ -24,7 +24,7 @@ static void BM_Random(benchmark::State& state) {
     state.SetComplexityN(n);
 }
 
-#define NUM_VALUES 5
+#define NUM_VALUES 20
 
 BENCHMARK(BM_Random)
     ->DenseRange(MIN_LEN, 500, 500 / NUM_VALUES)

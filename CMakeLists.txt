@@ -55,14 +55,6 @@ endif()
 # facilitate downloads during the configure step
 include(FetchContent)
 
-# Formatting library
-FetchContent_Declare(
-  fmtlib
-  GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-  GIT_TAG 8.1.1)
-FetchContent_MakeAvailable(fmtlib)
-# adds fmt::fmt
-
 # compiled library code is here
 add_subdirectory(src)
 
