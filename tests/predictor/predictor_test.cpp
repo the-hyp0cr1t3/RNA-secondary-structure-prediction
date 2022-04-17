@@ -5,7 +5,7 @@
 
 namespace {
 
-// ensures the matching does not break any rules
+// ensures the matching does not break any rules ---------------------------------------------------
 #define VALIDATE_MATCHING(matching, seq_len)                                                        \
     std::vector<int> frequency(seq_len);                                                            \
     for(int i = 0; i < matching.size(); i++) {                                                      \
@@ -37,8 +37,10 @@ namespace {
     /* matching: no base appears in more than one pair */                                           \
     EXPECT_LE(*std::max_element(frequency.begin(), frequency.end()), 1);
 
+// --------------------------------------------------------------------------------------------------
 
-// macro to verify the output of a sequence
+
+// macro to verify the output of a sequence ------------
 #define DO_TEST(sequence, expected_num_matchings)       \
     RNA::NASeq naseq(sequence);                         \
     RNA::Predictor predictor(naseq);                    \
@@ -48,6 +50,8 @@ namespace {
                                                         \
     EXPECT_EQ(num_matchings, expected_num_matchings);   \
     VALIDATE_MATCHING(matching, naseq.length())
+
+// ------------------------------------------------------
 
 
 TEST(PredictorTests, NDB7EFG) {
