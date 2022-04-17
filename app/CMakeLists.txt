@@ -1,11 +1,18 @@
-add_executable(app app.cpp)
+add_executable(app
+  main.cpp
+  "${CMAKE_SOURCE_DIR}/src/utils/utils.cpp"
 
-#   remove set(CMAKE_CXX_STANDARD xx) if you want target-wise standards
-# target_compile_features(app PRIVATE cxx_std_xx)
+  # headers are optional, but won't show up nicely in IDEs unless listed
+  "${CMAKE_SOURCE_DIR}/include"
+)
+
+target_include_directories(app PRIVATE
+  "${CMAKE_SOURCE_DIR}/include"
+)
+
+target_link_libraries(app PRIVATE predictor)
 
 set_target_properties(app
   PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin"
 )
-
-target_link_libraries(app PRIVATE mylib fmt::fmt)

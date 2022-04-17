@@ -32,6 +32,7 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
   add_compile_definitions(
     $<$<CONFIG:RELEASE>:NDEBUG>   # define NDEBUG in Release mode
+    RECOVER_MATCHING              # recovering the matching pairs slows down the code
   )
 
   # support folders in IDEs

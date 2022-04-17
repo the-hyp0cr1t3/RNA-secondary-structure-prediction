@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
@@ -5,7 +7,7 @@ import os
 from tqdm import tqdm
 import re
 
-DIRPATH = os.path.join("..", "data")
+DIRPATH = os.path.join("..", "data", "NDB-dataset")
 df = pd.read_excel("Result.xls")
 
 for id in tqdm(df["NDB ID"]):
@@ -17,4 +19,4 @@ for id in tqdm(df["NDB ID"]):
     with open(os.path.join(DIRPATH, f"{id}.txt"), "w") as f:
         f.write(seq)
 
-print(f"Number of RNA sequences: {len(os.listdir(DIRPATH))}")
+print(f"Number of RNA sequences detected: {len(os.listdir(DIRPATH))}")
