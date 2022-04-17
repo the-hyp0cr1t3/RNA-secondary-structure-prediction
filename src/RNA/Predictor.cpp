@@ -4,8 +4,8 @@
 
 RNA::Predictor::Predictor(const RNA::NASeq &seq)
     : n(seq.length()), naseq(seq),
-        dp(seq.length() + 1, std::vector<size_t>(seq.length() + 1)),
-        choices(seq.length() + 1, std::vector<int>(seq.length() + 1, -1)) {}
+        dp(seq.length(), std::vector<size_t>(seq.length())),
+        choices(seq.length(), std::vector<int>(seq.length(), -1)) {}
 
 size_t RNA::Predictor::find_max_matching() {
 
@@ -35,8 +35,7 @@ void RNA::Predictor::update_state(size_t l, size_t r, size_t m, size_t value) {
 
 }
 
-
-std::vector<std::pair<size_t, size_t>> RNA::Predictor::recover_matching() {
+std::vector<std::pair<size_t, size_t>> RNA::Predictor::recover_matchings() {
 #ifndef RECOVER_MATCHING
     throw std::runtime_error("Attempt to recover choices when RECOVER_MATCHING is not defined");
 #endif
@@ -44,21 +43,25 @@ std::vector<std::pair<size_t, size_t>> RNA::Predictor::recover_matching() {
     std::vector<std::pair<size_t, size_t>> matchings;
     matchings.reserve(dp[0][n - 1]);
 
-    std::stack<std::pair<size_t, size_t>> pending {{ { 0, n - 1 } }};
+    std::stack<std::pair<int, int>> pending {{ { 0, n - 1 } }};
 
     while(!pending.empty()) {
         auto [l, r] = pending.top();
         pending.pop();
 
+        if(l < 0 or r < l or (int)n <= r) continue;
+
         int m = choices[l][r];
 
-        if(m != -1) {
-            pending.emplace(l, m - 1);
+        if(m == -1) continue;
 
-            if((size_t)m < r - 1) {
-                pending.emplace(m + 1, r - 1);
-                matchings.emplace_back(m, r);
-            }
+        if(m == (int)r - 1) {
+            pending.emplace(l, r - 1);
+
+        } else {
+            pending.emplace(l, m - 1);
+            pending.emplace(m + 1, r - 1);
+            matchings.emplace_back(m, r);
         }
     }
 

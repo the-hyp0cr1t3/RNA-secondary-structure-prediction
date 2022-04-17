@@ -18,7 +18,7 @@ public:
 
     size_t find_max_matching();
 
-    std::vector<std::pair<size_t, size_t>> recover_matching();
+    std::vector<std::pair<size_t, size_t>> recover_matchings();
 
 private:
 

@@ -1,4 +1,3 @@
-// #undef RECOVER_MATCHING
 #include <RNA/NucleicAcidSequence.hpp>
 #include <RNA/Predictor.hpp>
 #include <utils/utils.hpp>
@@ -11,8 +10,8 @@
 
 int main(int argc, char *argv[]) {
     if(argc != 2) {
-        std::cerr << "Invalid args; Usage ./yee fname" << std::endl;
-        std::cerr << "eg: ./yee hello-world.yee" << std::endl;
+        std::cerr << "Invalid args; Usage ./app fname" << std::endl;
+        std::cerr << "eg: ./app sample.txt" << std::endl;
         exit(EXIT_FAILURE);
     }
 
@@ -21,10 +20,12 @@ int main(int argc, char *argv[]) {
     std::string fname = argv[1];
     utils::open_file(fin, fname);
 
+    // reading input
     RNA::NASeq seq;
     fin >> seq;
 
     RNA::Predictor predictor(seq);
+
 
     // finding max matchings
     std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
@@ -32,16 +33,18 @@ int main(int argc, char *argv[]) {
       size_t num_matchings = predictor.find_max_matching();
 
 #ifdef RECOVER_MATCHING
-      auto matchings = predictor.recover_matching();
+      auto matchings = predictor.recover_matchings();
 #endif
 
     std::chrono::high_resolution_clock::duration total_runtime = std::chrono::high_resolution_clock::now() - start;
 
+
+    // writing output
     std::cout << num_matchings << " matching(s) possible" << std::endl;
 
 #ifdef RECOVER_MATCHING
     for(auto [l, r]: matchings)
-        std::cout << l << ' ' << r << std::endl;
+        std::cout << l + 1 << ' ' << r + 1 << std::endl;
 #endif
 
     // time taken
