@@ -8,7 +8,8 @@ namespace {
 // ensures the matching does not break any rules ---------------------------------------------------
 #define VALIDATE_MATCHING(matching, seq_len)                                                        \
     std::vector<int> frequency(seq_len);                                                            \
-    for(int i = 0; i < matching.size(); i++) {                                                      \
+    int msz = matching.size();                                                                      \
+    for(int i = 0; i < msz; i++) {                                                                  \
         auto [li, ri] = matching[i];                                                                \
                                                                                                     \
         /* bounds checking */                                                                       \
@@ -25,7 +26,7 @@ namespace {
         frequency[li]++;                                                                            \
         frequency[ri]++;                                                                            \
                                                                                                     \
-        for(int j = i + 1; j < matching.size(); j++) {                                              \
+        for(int j = i + 1; j < msz; j++) {                                                          \
             auto [lj, rj] = matching[j];                                                            \
                                                                                                     \
             /* no knots: if (a,b) and (c,d) are two pairs, then we cannot have a < c < b < d */     \
