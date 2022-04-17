@@ -1,3 +1,9 @@
+/**
+ * @file main.cpp
+ * @author the-hyp0cr1t3
+ * @brief Main app file
+ * @date 2022-04-17
+ */
 #include <RNA/NucleicAcidSequence.hpp>
 #include <RNA/Predictor.hpp>
 #include <utils/utils.hpp>
@@ -8,10 +14,21 @@
 #include <string>
 #include <chrono>
 
+/**
+ * @brief Entry point
+ *
+ * **Usage** `./app [inputfile]`
+ *
+ * **Example** `./app sample.txt`
+ *
+ * @param argc The number of commandline arguments
+ * @param argv A list of commandline arguments
+ * @return nothing
+ */
 int main(int argc, char *argv[]) {
     if(argc != 2) {
-        std::cerr << "Invalid args; Usage ./app fname" << std::endl;
-        std::cerr << "eg: ./app sample.txt" << std::endl;
+        std::cerr << "Invalid args; Usage: ./app [inputfile]" << std::endl;
+        std::cerr << "Eg: ./app sample.txt" << std::endl;
         exit(EXIT_FAILURE);
     }
 

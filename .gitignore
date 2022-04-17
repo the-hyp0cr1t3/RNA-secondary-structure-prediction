@@ -2,3 +2,4 @@ build*
 bin
 data/NDB-dataset/*
 todo.txt
+docs/html

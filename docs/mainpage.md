@@ -1,11 +1,8 @@
 # Documentation for RNA Secondary Structure Prediction {#mainpage}
 
-This is the documentation for RNA Secondary Structure Prediction.
+**Problem:** Given a nucleic acid base RNA sequence, find a maximal matching of \f$ \{A,U\} \f$ or \f$ \{C,G\} \f$ base pairs without knots or sharp turns.
 
-It is good documentation because:
+This is a modern C++ implementation that employs (iterative) dynamic programming on intervals <br>
+to find the cardinality of the maximum matching of base pairs in \f$ \mathcal{O}(n^3) \f$.
 
-1. It exists.
-2. I wrote it.
-3. Everything is documented.
-
-The main function is `::find_intersections`.
+The main function is `RNA::Predictor::find_max_matching()`.

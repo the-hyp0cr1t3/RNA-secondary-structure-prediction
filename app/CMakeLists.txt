@@ -4,10 +4,12 @@ add_executable(app
 
   # headers are optional, but won't show up nicely in IDEs unless listed
   "${CMAKE_SOURCE_DIR}/include"
+  "${PROJECT_BINARY_DIR}/include"
 )
 
 target_include_directories(app PRIVATE
   "${CMAKE_SOURCE_DIR}/include"
+  "${PROJECT_BINARY_DIR}/include"
 )
 
 target_link_libraries(app PRIVATE predictor)

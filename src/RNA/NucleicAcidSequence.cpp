@@ -24,7 +24,7 @@ RNA::NASeq::NASeq(const std::string &seq) {
     try {
         RNA::NASeq::validate(seq);
     } catch (const std::runtime_error &e) {
-        throw "Invalid nucleic acid sequence provided";
+        throw "Invalid nucleic acid base sequence provided";
     }
 
     build(seq);
@@ -37,7 +37,7 @@ std::istream &RNA::operator >> (std::istream &is, RNA::NASeq &seq) {
     try {
         RNA::NASeq::validate(s);
     } catch (const std::runtime_error &e) {
-        throw "Invalid nucleic acid sequence read";
+        throw "Invalid nucleic acid base sequence read";
     }
 
     seq.build(s);
@@ -62,11 +62,11 @@ void RNA::NASeq::build(const std::string &seq) {
 bool RNA::NASeq::validate(const std::string &seq) {
 
     if(seq.empty())
-        throw std::runtime_error("Empty nucleic acid sequence");
+        throw std::runtime_error("Empty nucleic acid base sequence");
 
     for(char c: seq)
         if(c != 'A' and c != 'C' and c != 'G' and c != 'U')
-            throw std::runtime_error("Invalid base");
+            throw std::runtime_error("Invalid nucleic acid base");
 
     return true;
 }

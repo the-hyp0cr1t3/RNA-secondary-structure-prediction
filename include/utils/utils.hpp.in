@@ -1,0 +1,26 @@
+/**
+ * @file utils.hpp.in
+ * @author the-hyp0cr1t3
+ * @brief Utility functions
+ * @date 2022-04-17
+ */
+#pragma once
+
+#include <fstream>
+#include <iostream>
+
+/// Absolute path to ./data, substituted in by cmake during confiure phase
+#define DATA_PATH "@CMAKE_SOURCE_DIR@/data/"
+
+namespace utils {
+
+  /**
+   * @brief Safely opens a file, otherwise throws an exception
+   *
+   * @param inFile A reference to an ifstream object to open the file with
+   * @param fname The path to the file
+   * @note fname must either be an absolute path or a path relative to ./data dir
+   */
+  void open_file(std::ifstream &inFile, const std::string &fname);
+
+} // utils

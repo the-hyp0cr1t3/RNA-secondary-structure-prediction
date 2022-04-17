@@ -4,7 +4,7 @@ void utils::open_file(std::ifstream &inFile, const std::string &fname) {
     inFile.exceptions(std::ifstream::badbit | std::ifstream::failbit);
 
     try {
-        inFile.open(EXAMPLES_PATH + fname);
+        inFile.open(DATA_PATH + fname);
 
     } catch (const std::ifstream::failure &e) {
         try {
