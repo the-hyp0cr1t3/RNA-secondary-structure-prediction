@@ -49,7 +49,7 @@ public:
      *     \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \,
      *     \, \, \, \, \, \, \, \, \, \, \, \, \, \, dp_{\, l, \, r-1 }  &  \, r - l \gt \texttt{MIN_LEN} \\
      *     \underset{l \le m \le r}{\max} \, \, \, dp_{\, l, \, m-1 } + 1 + dp_{\, m+1, \, r-1}
-     *      &  \, \mathrm{matches}(seq_m, seq_r)
+     *      &  \, b_m \text{ and } b_r \text{ are complementary bases}
      * \end{cases}
      * \f$
      *
