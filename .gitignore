@@ -4,3 +4,4 @@ data/NDB-dataset/*
 todo.txt
 docs/html
 .ipynb_checkpoints
+*.ipynb
