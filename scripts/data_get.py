@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+"""Gets the (parseable) NDB dataset from
+http://ndbserver.rutgers.edu/service/ndb/atlas/gallery/rna?polType=all&rnaFunc=all&protFunc=all&strGalType=rna&expMeth=all&seqType=all&galType=table&start=0&limit=50
+"""
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
