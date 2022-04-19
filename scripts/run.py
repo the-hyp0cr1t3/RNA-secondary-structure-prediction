@@ -46,7 +46,7 @@ def plotData(sequence, matches):
     for e in matches:
         G.add_edge(e[0], e[1], color="#FF5F00", style="--")
 
-    nx.draw_shell(
+    nx.draw_kamada_kawai(
         G,
         labels=nx.get_node_attributes(G, "base"),
         edge_color=nx.get_edge_attributes(G, "color").values(),
