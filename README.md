@@ -1,7 +1,7 @@
 # RNA secondary structure prediction
 **Problem:** Given a nucleic acid sequence of RNA, find a [maximum matching](https://en.wikipedia.org/wiki/Matching_(graph_theory)) of $\{A,U\}$ or $\{C,G\} $ base pairs without knots or sharp turns.
 
-This is a modern C++ implementation that employs (iterative) [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming) on intervals to find the cardinality of the maximum matching of base pairs as well as the base pairs in the matching.
+This is a modern C++ implementation that employs (iterative) [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming) on intervals to find the cardinality of the maximum matching of base pairs as well as the base pairs in the matching. View the report [here](https://lucent-lebkuchen-97223f.netlify.app/report.html).
 
 ## Install Dependencies
 To build the project you must have [CMake](https://cmake.org/install/) installed.
@@ -53,6 +53,16 @@ The output will contain the description of the maximum matching.
 
 The first line will contain a single integer $m$ — the cardinality of the maximum matching in the sequence. Each of the next $m$ lines will contain two integers — the indices of the base pairs in the matching.
 
+## Visualization
+Python script to run the app against some input and plot a graph with [matplotlib](https://matplotlib.org/) using the output.
+
+```sh
+cd scripts
+./run.py [inputfile]
+```
+
+**Note:** `inputfile` may also be relative to `./data`.
+
 ## Testing
 This project uses [GoogleTest](https://github.com/google/googletest) for its unit tests and [GoogleBenchmark](https://github.com/google/benchmark) for benchmarking.
 
@@ -66,6 +76,8 @@ ctest -R PredictorTests -j6
 ```sh
 ./bin/bench --benchmark_counters_tabular=true
 ```
+<details>
+<summary>Benchmark output</summary>
 
 ```python
 2022-04-18T03:23:59+05:30
@@ -97,11 +109,7 @@ Benchmark              Time             CPU   Iterations
 BM_Random_BigO       0.91 N^3        0.91 N^3
 BM_Random_RMS          1 %             1 %
 ```
-
-## Timing Analysis
-View the report here.
-This empirically proves the relation
-$$ T(n) = \Theta(n^3) $$
+</details>
 
 </br>
 
