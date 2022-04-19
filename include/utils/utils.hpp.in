@@ -6,8 +6,8 @@
  */
 #pragma once
 
-#include <fstream>
 #include <iostream>
+#include <fstream>
 
 /// Absolute path to ./data, substituted in by cmake during confiure phase
 #define DATA_PATH "@CMAKE_SOURCE_DIR@/data/"
