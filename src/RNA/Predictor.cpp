@@ -1,13 +1,12 @@
 #include <Predictor.hpp>
-#include <stack>
 #include <cassert>
 
-RNA::Predictor::Predictor(const RNA::NASeq &seq)
-    : n(seq.length()), naseq(seq),
-        dp(seq.length(), std::vector<size_t>(seq.length())),
-        choices(seq.length(), std::vector<int>(seq.length(), -1)) {}
+RNA::Predictor::Predictor(const RNA::NASeq &seq): n(seq.length()), naseq(seq) {}
 
 size_t RNA::Predictor::find_max_matching() {
+    for(size_t i = 0; i < n; i++)
+        for(size_t j = 0; j < n; j++)
+            dp[i][j] = 0, choices[i][j] = -1;
 
     for(size_t len = MIN_LEN + 1; len < n; len++) {
         for(size_t l = 0, r = len; r < n; l++, r++) {
@@ -35,19 +34,26 @@ void RNA::Predictor::update_state(size_t l, size_t r, size_t m, size_t value) {
 
 }
 
-std::vector<std::pair<size_t, size_t>> RNA::Predictor::recover_matchings() {
+RNA::pair *RNA::Predictor::recover_matchings() {
 #ifndef RECOVER_MATCHING
     throw std::runtime_error("Attempt to recover choices when RECOVER_MATCHING is not defined");
 #endif
 
-    std::vector<std::pair<size_t, size_t>> matchings;
-    matchings.reserve(dp[0][n - 1]);
+    size_t idx = 0;
+    RNA::pair *matchings = new RNA::pair[dp[0][n - 1]];
 
-    std::stack<std::pair<int, int>> pending {{ { 0, n - 1 } }};
+    int p_top = -1;
+    RNA::pair pending[dp[0][n - 1]];
 
-    while(!pending.empty()) {
-        auto [l, r] = pending.top();
-        pending.pop();
+    auto push = [&pending, &p_top](int x, int y) {
+        pending[++p_top] = { x, y };
+    };
+
+    push(0, n - 1);
+
+    while(p_top != -1) {
+        int l = pending[p_top].x, r = pending[p_top].y;
+        --p_top;
 
         if(l < 0 or r < l or (int)n <= r) continue;
 
@@ -56,16 +62,16 @@ std::vector<std::pair<size_t, size_t>> RNA::Predictor::recover_matchings() {
         if(m == -1) continue;
 
         if(m == (int)r - 1) {
-            pending.emplace(l, r - 1);
+            push(l, r - 1);
 
         } else {
-            pending.emplace(l, m - 1);
-            pending.emplace(m + 1, r - 1);
-            matchings.emplace_back(m, r);
+            push(l, m - 1);
+            push(m + 1, r - 1);
+            matchings[idx++] = { m, r };
         }
     }
 
-    assert(matchings.size() == dp[0][n - 1]);
+    assert(idx == dp[0][n - 1]);
 
     return matchings;
 }

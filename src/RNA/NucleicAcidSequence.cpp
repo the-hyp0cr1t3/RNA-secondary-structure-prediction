@@ -47,15 +47,14 @@ std::istream &RNA::operator >> (std::istream &is, RNA::NASeq &seq) {
 
 
 void RNA::NASeq::build(const std::string &seq) {
-    sequence.clear();
-    sequence.reserve(seq.size());
+    size = 0;
     for(char c: seq) {
         RNA::BASE b;
         b = c == 'A'? RNA::BASE::A
             : c == 'C'? RNA::BASE::C
             : c == 'G'? RNA::BASE::G
             : RNA::BASE::U;
-        sequence.push_back(b);
+        sequence[size++] = b;
     }
 }
 
@@ -80,5 +79,5 @@ const RNA::BASE &RNA::NASeq::operator [] (size_t idx) const {
 }
 
 size_t RNA::NASeq::length() const {
-    return sequence.size();
+    return size;
 }

@@ -8,7 +8,8 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
+
+#define MAX_N 501
 
 namespace RNA {
 
@@ -34,7 +35,8 @@ bool matches(RNA::BASE x, RNA::BASE y);
  * @brief A class to manage nucleic acid sequences
  */
 class NASeq {
-    std::vector<RNA::BASE> sequence;    ///< A vector storing the sequence of nucleic acid bases
+    size_t size {0};              ///< The number of nucleic acid bases
+    RNA::BASE sequence[MAX_N];    ///< An array storing the sequence of nucleic acid bases
 
 public:
 

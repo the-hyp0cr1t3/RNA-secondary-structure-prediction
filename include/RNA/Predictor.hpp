@@ -8,12 +8,20 @@
 
 #include <NucleicAcidSequence.hpp>
 #include <string>
-#include <vector>
 
 /// The minimum number of intervening bases between a pair in the matching
 #define MIN_LEN 4
 
 namespace RNA {
+
+/**
+ * @brief A simple structure to hold integer pairs
+ *
+ */
+struct pair {
+    int x;      ///< The first value
+    int y;      ///< The second value
+};
 
 class Predictor {
     size_t n;       ///< The length of the nucleic acid base sequence
@@ -80,9 +88,9 @@ public:
      * \end{cases}
      * \f$
      *
-     * @return `std::vector<std::pair<size_t, size_t>>` The indices of the matching base pairs.
+     * @return `matching*` An array of the indices of the matching base pairs.
      */
-    std::vector<std::pair<size_t, size_t>> recover_matchings();
+    pair *recover_matchings();
 
 private:
 
@@ -91,14 +99,14 @@ private:
      *
      * \f$ dp_{\, l, \, r } \f$ denotes the maximum number of disjoint base pairs in the interval \f$ seq_{\, l \ldots r} \f$.
      */
-    std::vector<std::vector<size_t>> dp;
+    size_t dp[MAX_N][MAX_N];
 
     /**
      * @brief The choices table which keeps track of the choices made (previous state) after every successful transition
      *
      * \f$ choices_{\, l, \, r } \f$ denotes the choice (previous state) that led to \f$  dp_{\, l, \, r } \f$.
      */
-    std::vector<std::vector<int>> choices;
+    size_t choices[MAX_N][MAX_N];
 
     /**
      * @brief Updates the dp table and conditionally the choices table if `RECOVER_MATCHING`  is defined

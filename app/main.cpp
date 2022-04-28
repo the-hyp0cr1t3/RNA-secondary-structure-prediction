@@ -10,7 +10,6 @@
 
 #include <fstream>
 #include <iostream>
-#include <vector>
 #include <string>
 #include <chrono>
 
@@ -60,8 +59,8 @@ int main(int argc, char *argv[]) {
     std::cout << std::endl << "  " << num_matchings << std::endl;
 
 #ifdef RECOVER_MATCHING
-    for(auto [l, r]: matchings)
-        std::cout << "  " << l + 1 << ' ' << r + 1 << std::endl;
+    for(size_t i = 0; i < num_matchings; i++)
+        std::cout << "  " << matchings[i].x + 1 << ' ' << matchings[i].y + 1 << std::endl;
 #endif
 
     // time taken
