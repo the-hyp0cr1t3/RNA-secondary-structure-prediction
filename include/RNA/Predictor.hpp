@@ -23,6 +23,10 @@ struct pair {
     int y;      ///< The second value
 };
 
+/**
+ * @brief Implements the maximal matching finding logic
+ *
+ */
 class Predictor {
     size_t n;       ///< The length of the nucleic acid base sequence
     NASeq naseq;    ///< The nucleic acid base sequence
