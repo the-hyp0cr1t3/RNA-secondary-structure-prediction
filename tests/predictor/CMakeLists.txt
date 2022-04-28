@@ -17,9 +17,9 @@ endmacro()
 
 
 # register a test linked with google test
-# add_gtest_macro(
-#   predictor_test
-#   predictor_test.cpp
-#   predictor
-#   "${CMAKE_SOURCE_DIR}/data"
-# )
+add_gtest_macro(
+  predictor_test
+  predictor_test.cpp
+  predictor
+  "${CMAKE_SOURCE_DIR}/data"
+)

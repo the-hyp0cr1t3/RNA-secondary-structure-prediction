@@ -6,11 +6,11 @@
 namespace {
 
 // ensures the matching does not break any rules ---------------------------------------------------
-#define VALIDATE_MATCHING(matching, seq_len)                                                        \
+#define VALIDATE_MATCHING(matching, msz, seq_len)                                                   \
     std::vector<int> frequency(seq_len);                                                            \
-    int msz = matching.size();                                                                      \
     for(int i = 0; i < msz; i++) {                                                                  \
-        auto [li, ri] = matching[i];                                                                \
+        auto li = matching[i].x;                                                                    \
+        auto ri = matching[i].y;                                                                    \
                                                                                                     \
         /* bounds checking */                                                                       \
         EXPECT_LE(0, li);       /* 0 <= li */                                                       \
@@ -50,7 +50,7 @@ namespace {
     auto matching = predictor.recover_matchings();      \
                                                         \
     EXPECT_EQ(num_matchings, expected_num_matchings);   \
-    VALIDATE_MATCHING(matching, naseq.length())
+    VALIDATE_MATCHING(matching, num_matchings, naseq.length())
 
 // ------------------------------------------------------
 
